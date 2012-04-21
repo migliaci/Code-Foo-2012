@@ -1,0 +1,51 @@
+package com.migliaci.ign.license;
+
+public class CalculationHelper {
+
+	public double totalPopulation(double digits, double letters)
+	{
+		if ( digits == 0) {
+			return permutationFunctionOrdered(26, letters);
+		}
+		if ( letters == 0) {
+			return permutationFunctionOrdered(10, digits);
+		}
+		
+		return(permutationFunctionOrdered(10, digits) * permutationFunctionOrdered(26, letters));
+	}
+	
+	
+	public double permutationFunction(double n, double r)
+	{
+		return ((factorialFunction(n)) / (factorialFunction(n - r)));
+	}
+	
+	public double combinationFunction(double n, double r)
+	{
+		
+		return ((factorialFunction(n)) / (factorialFunction(r) * factorialFunction(n - r)));
+	}
+	
+	public double permutationFunctionOrdered(double n, double r)
+	{
+		
+		return Math.pow(n, r);	
+	}
+	
+	public double factorialFunction(double n)
+	{
+		double temp;
+		
+		if(n <= 1)
+		{
+			return 1;
+		}
+		else
+		{
+			temp = n * factorialFunction(n-1);
+			return temp;
+		}
+		
+	}
+	
+}

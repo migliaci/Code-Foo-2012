@@ -1,0 +1,54 @@
+<html>
+<head>
+</head>
+<body>
+<i><p>How many ping pong balls would it take to fill an average-sized school bus? Describe each step in your thought process.</p></i>
+<br>
+<p>
+<ol>
+<li>
+
+<img src="images/rect_volume.jpg" align="right" width="300", height="300"/>Before anything else, we need to determine the volume of the bus.  In other words, we need to figure out how much space we actually have to fill with bouncy goodness.  In order to do that, we need the dimensions of an average-sized school bus (obtainable <a href="http://answers.yahoo.com/question/index?qid=20090126181402AAd53gP">here at Yahoo answers</a>).  Then, calculate the volume using the standard formula for a rectangular prism ( length * width * height).  Since we're scientific folks, we're going to use the metric system to do our calculations and turn the 11ft (high) * 8ft(wide) * 40ft (long) dimensions of the school bus into their metric equivalents.  1 foot is equivalent to 0.3048 meters, which changes our dimensions as follows: 3.4m (high) * 2.4m (wide) * 12.2m (long).  This gives the bus a total volume of 99.6 m<sup>3</sup>. 
+<br>
+<br>
+</li>
+<li>Next, we need to determine the volume of a single ping-pong ball.  Knowing how much space we have to fill up doesn't do us any good unless we also know the size of the object with which we're filling that space.  In this case, a tournament-legal ping-pong ball has a 40mm (0.04 meter) diameter (<a href="http://en.wikipedia.org/wiki/Table_tennis#Ball">according to Wikipedia</a>), and thus its volume can be computed using the formula for obtaining the volume of a sphere:
+<br>
+<img src="images/sphere_volume.png" align="center"/> 
+<br>
+<p>When computed, that gives us: 0.0000335 m<sup>3</sup> as the final volume for a single ping-pong ball.</p>
+<br>
+</li>  
+<li> <img src="images/pack_box.png" align="right" width="150", height="150"/>
+Now, to help simplify the final calculations, it would be useful to determine the number of ping-pong balls that would fit in a cubic meter (including space between the balls, due to the fact that balls are spheres rather than cubes, there will be some empty space as well - and I don't think this question is asking about special cube-shaped ping-pong balls, though that would make for an interesting game of ping-pong).  We can discover this value by one of two ways: rough calculation or good old-fashioned elbow grease and a lot of ping-pong balls.  Since I don't have nearly enough ping-pong balls to try this out, a rough calculation will have to do. Based on <a href="http://en.wikipedia.org/wiki/Close-packing_of_equal_spheres">close-packing filling factor</a>, the maximum density that can be obtained in the 1m<sup>3</sup> cube is roughly 0.74.  If this is the case, we can determine that there are approximately  22089 balls in a cubic meter, rounded down (0.74 / 0.0000335). </li>  
+<br>
+<br>
+<li>Multiply the number of balls in a cubic meter by the volume of the bus.  Because we already know the volume of the bus: 99.6 m<sup>3</sup>, the calculation is simple.   The result is 2,200,064 balls (22089 * 99.6).</li> 
+<br>
+<br>
+<li>???</li>
+<br>
+<br>
+<li>Profit... or play a lot of ping-pong.</li>
+</ol>
+</p>	
+<br>
+<br>
+<p>Finally, a few notes.  This calculation assumes that we're filling the rectangular part of the bus with ping-pong balls, and does not take into account the curved roof of a school bus, or presence of certain conditions based on assumptions that could modify the volume of the bus.  Here are a few thoughts concerning these additional complications:
+<br>
+<br>
+<ul>
+<li>Curved roof volume could be approximated (measuring the curve, then producing a cylinder getting volume of cylinder and divide it in 1/3), and we'd add that value to the original volume of the bus. </li>
+<br>
+<br>
+<li>Seats are made up of a bench consisting of two rectangular prisms as well as four cylindrical legs.  Thus, calculating the volume of a seat can be done by taking the volume of each rectangular prism, and adding the volume of each leg  (l<sub>1</sub> * w<sub>1</sub> * h<sub>1</sub>) + (l<sub>2</sub> * w<sub>2</sub> * h<sub>2</sub>) + 4 * ( 4/3&#8719;r<sup>3</sup>).  Multiply this value by the number of seats and subtract from the total volume we found previously (99.6 m<sup>3</sup>). </li>
+<br>
+<br>
+<li> The way the rectangular prism representing the bus was measured will also impact the final answer.  If the dimensions of the bus were taken from the absolute front of the bus and not just the cabin, then the calculation will be slightly off.</li>
+<br>
+<br>
+<li> Space created by gaps in the stairs of the cabin and the gas tank could also be discussed, but let's stop here.  </li>
+</ul>    
+</p>
+</body>
+</html>

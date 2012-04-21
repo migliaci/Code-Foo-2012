@@ -1,0 +1,62 @@
+package com.migliaci.ign.license;
+
+public class Combination {
+
+	private String combination = "";
+	private double value = 0;
+	private double population = 0;
+	private double extraPlates = 0;
+	
+	
+	public Combination(String combo, double val)
+	{
+		combination = combo;
+		value = val;
+	}
+	
+	public String getCombination()
+	{
+		
+		return combination;
+	}
+	
+	public String getSolutionString()
+	{
+		return ("Population: " + getPopulation() + " Extra Plates: " + getExtraPlates() + " Solution: " + getCombination());
+		
+	}
+	
+	public double getValue()
+	{
+		return value;
+	}
+	
+	public void setCombination(String newCombination)
+	{
+		combination = newCombination;
+	}
+	
+	public void setValue(int newValue)
+	{
+		value = newValue;
+	}
+
+	public double getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(double population) {
+		this.population = population;
+	}
+
+	public double getExtraPlates() {
+		return extraPlates;
+	}
+
+	public void setExtraPlates(double extraPlates) {
+		this.extraPlates = extraPlates;
+	}
+	
+	
+	
+}

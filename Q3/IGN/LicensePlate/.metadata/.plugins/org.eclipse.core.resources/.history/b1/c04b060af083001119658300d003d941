@@ -1,0 +1,34 @@
+package com.migliaci.ign.license;
+
+public class Combination {
+
+	private String combination = "";
+	private int value = 0;
+	
+	public Combination(String combo, int val)
+	{
+		combination = combo;
+		value = val;
+	}
+	
+	public String getCombination()
+	{
+		return combination;
+	}
+	
+	public int getValue()
+	{
+		return value;
+	}
+	
+	public void setCombination(String newCombination)
+	{
+		combination = newCombination;
+	}
+	
+	public void setValue(int newValue)
+	{
+		value = newValue;
+	}
+	
+}

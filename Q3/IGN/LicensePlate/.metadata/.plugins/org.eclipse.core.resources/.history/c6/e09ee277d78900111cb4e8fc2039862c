@@ -1,0 +1,116 @@
+package com.migliaci.ign.license;
+
+/** Combination.java 
+* Holds data for a potential solution 
+*
+* @author Michael Migliacio
+* @version 0.9a 4/18/2012.
+*/
+
+public class Combination {
+
+	private String combo = ""; // combination value as a string
+	private double value = 0; // solution value as a double
+	private double population = 0; // population value
+	private double extraPlates = 0; // extra plate value (passed into class)
+
+	/**
+	 * Constructor
+	 * 
+	 * @param cmb
+	 * @param val
+	 */
+	public Combination(String cmb, double val) {
+		combo = cmb;
+		value = val;
+	}
+
+	/**
+	 * getCombo getter method for combination value
+	 * 
+	 * @return combination value as a string
+	 */
+	public String getCombo() {
+
+		return combo;
+	}
+
+	/**
+	 * getSolutionString computes value of solution based on information
+	 * provided
+	 * 
+	 * @return solution string
+	 */
+	public String getSolutionString() {
+		
+		//population/pattern/totalplates/excessplates
+		
+		return ("Population: " + Math.rint(getPopulation()) + "\n" + "Pattern:" + getCombo() + "\n" + "Total Plates: " + Math.rint(value) + "\n" + "Excess Plates: "
+				+ Math.rint(getExtraPlates()));
+
+	}
+
+	/**
+	 * getValue getter method for value
+	 * 
+	 * @return value
+	 */
+	public double getValue() {
+		return value;
+	}
+
+	/**
+	 * setCombo setter method for combo value
+	 * 
+	 * @param newCombination
+	 */
+	public void setCombo(String newCombination) {
+		combo = newCombination;
+	}
+
+	/**
+	 * setValue setter method for value
+	 * 
+	 * @param newValue
+	 */
+	public void setValue(int newValue) {
+		value = newValue;
+	}
+
+	/**
+	 * getPopulation getter method for population value
+	 * 
+	 * @return population value
+	 */
+	public double getPopulation() {
+		return population;
+	}
+
+	/**
+	 * setPopulation setter method for population value
+	 * 
+	 * @param population
+	 */
+	public void setPopulation(double population) {
+		this.population = population;
+	}
+
+	/**
+	 * getExtraPlates getter method for extra plates value
+	 * 
+	 * @return extra plates value
+	 */
+	public double getExtraPlates() {
+		return extraPlates;
+	}
+
+	/**
+	 * setExtraPlates setter method for extra plates value
+	 * 
+	 * @param extraPlates
+	 */
+	public void setExtraPlates(double extraPlates) {
+		this.extraPlates = extraPlates;
+	}
+
+}

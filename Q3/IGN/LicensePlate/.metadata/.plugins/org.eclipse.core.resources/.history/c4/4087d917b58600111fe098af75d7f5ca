@@ -1,0 +1,5 @@
+package com.migliaci.ign.license;
+
+public class CalculationHelper {
+
+}

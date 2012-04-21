@@ -1,0 +1,219 @@
+package com.migliaci.ign.license;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		boolean quitProgram = false;
+		String choice = "";
+		
+
+		try
+		{
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			
+			
+			while (quitProgram == false)
+			{
+				System.out.println("Enter a population and press Enter (or Q to quit): ");
+				choice = br.readLine();
+				if (choice.equalsIgnoreCase("Q")){
+					System.out.println("Quitting program.");
+					quitProgram = true;
+					System.exit(0);
+
+				} else {
+					
+					try
+					{
+					Double valueToCalculate = Double.valueOf(choice);
+					
+					if(valueToCalculate.doubleValue() < 0)
+					{
+						throw new NumberFormatException();
+					}
+					
+					String result = calculateSolution(Math.rint(valueToCalculate.doubleValue()));
+					System.out.println(result);
+					System.out.println("");
+					}
+					catch(NumberFormatException nfe) {
+						System.out.println("Invalid Or Blank Double Value Provided! " + choice);
+						System.out.println("Please enter a valid numeric population value.");
+					}
+				}
+
+			} 
+		} catch (IOException ie) {
+			System.out.println("I/O Exception Occurred: " + ie);
+			System.out.println("Exiting program.");
+			System.exit(1);
+		} 
+
+	}
+		 
+		
+		
+		
+		/*
+		int generatedCount = 0;
+	    String generatedSolution = "";
+	    
+	    
+	    
+	    herpDerp(10);
+	    herpDerp(15);
+	    herpDerp(26);
+	    herpDerp(50);
+	    herpDerp(100);
+	    herpDerp(676);
+	    herpDerp(677);
+	    herpDerp(999);
+	    herpDerp(1000);
+	    herpDerp(10000);
+	    herpDerp(100000);
+	    herpDerp(1000000);
+	    herpDerp(15003);
+	    herpDerp(16732);
+	    herpDerp(256637);
+	    herpDerp(275637);
+	    herpDerp(475637);
+	    herpDerp(0);
+	    herpDerp(1);
+	    herpDerp(2);       
+		*/
+	
+		
+
+	
+	
+	
+	public static String calculateSolution(double population)
+	{
+		
+		Double calculatedPopulation = new Double(0);
+		double digits = 0;
+		double letters = 0;
+		ArrayList<Combination> combinationList = new ArrayList<Combination>();
+		CalculationHelper calcHelper = new CalculationHelper();
+		
+		if((population == 0) || (population == 1))
+		{
+			
+			digits = population;
+			Combination combo = new Combination(letters + " letters, " + digits + " numbers", population);
+			combo.setPopulation(population);
+			combo.setExtraPlates(10 - population);
+			return combo.getSolutionString();
+			
+		}
+	
+		
+		while(digits < 10)
+		{
+			letters = 0;
+			while(letters < 10)
+			{
+				calculatedPopulation = calcHelper.totalPopulation(digits, letters);
+				combinationList.add(new Combination(letters + " letters, " + digits + " numbers", calculatedPopulation));
+				letters++;
+			}
+			digits++;
+		}
+		
+		//now check to see which number is the smallest.
+		//set smallest equal to first item, run calculation
+		//if it's a smaller number, set it.
+		double calculatedExtraPlates = 0;
+		Combination currentSolution = null;
+		
+		for(int i = 0; i < combinationList.size(); i++){
+			
+			if(currentSolution == null) {
+				currentSolution = (Combination) combinationList.get(i);
+				calculatedExtraPlates = currentSolution.getValue() - population;
+				//calculated extraPlates should be set here.  Negative numbers are invalid.
+			} else {
+				
+				double currentExtraPlates = 0;
+				
+				currentExtraPlates = combinationList.get(i).getValue() - population;
+				
+				if(currentExtraPlates >= 0 && currentExtraPlates < calculatedExtraPlates) {
+					calculatedExtraPlates = currentExtraPlates;
+					currentSolution = combinationList.get(i);
+				} else if(calculatedExtraPlates < 0) {
+					calculatedExtraPlates = currentExtraPlates;
+					currentSolution = combinationList.get(i);
+				}
+				
+			}
+		}
+		
+		currentSolution.setPopulation(population);
+		currentSolution.setExtraPlates(calculatedExtraPlates);
+		
+		return currentSolution.getSolutionString();
+		//System.out.println("Population: " + population + " Extra Plates: " + calculatedExtraPlates + " Solution: " + currentSolution.getCombination());
+		//return "";
+		
+	}
+	
+	
+	/*
+	public String herpDerp(int population)
+	{
+		
+		HashMap<Integer, Combination> hashMap = new HashMap<Integer, Combination>();
+		int max = 100;
+		int cur = 0;
+		int index = 2; //current index
+		int currentValue = 0;
+		String currentString = "";
+		
+		Combination baseLetter = new Combination("l", 26);
+		Combination baseNumber = new Combination("n", 10);
+		
+		hashMap.put(0, baseLetter);
+		hashMap.put(1, baseNumber);
+		
+		while(cur < max)
+		{
+			//
+			if("".equals(currentString)) {
+				//we're starting off generation
+			}
+			
+			index++;
+			
+			cur++;
+		}
+		
+		
+		//we'll start with a number, add a letter
+		
+		
+		//l or n next, both
+		
+		//add l, and add n
+		//keep track of where we are, then append both l and n, add those to map.
+		
+		
+		//up to 10 items, all possible combinations
+		//as long as current number doesn't exist in map, add it
+		//find the one closest to 
+		
+		
+		return "";
+	}
+	*/
+
+
+}

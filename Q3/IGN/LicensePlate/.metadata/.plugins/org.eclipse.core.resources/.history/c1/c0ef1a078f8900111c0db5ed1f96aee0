@@ -1,0 +1,95 @@
+package com.migliaci.ign.license;
+
+/** CalculationHelper.java 
+* Computes solution value for a given population and manages program flow 
+*
+* @author Michael Migliacio
+* @version 0.9a 4/18/2012.
+*/
+
+public class CalculationHelper {
+	
+	/**
+	 * totalPlates
+	 * returns a value for total number of plates generated given a number of digits and number of letters 
+	 * @param digits
+	 * @param letters
+	 * @return total number of possible plates generated based on number of digits and letters given
+	 */
+	public double totalPlates(double digits, double letters)
+	{
+		if ( digits == 0) {
+			return permutationFunctionOrdered(26, letters);
+		}
+		if ( letters == 0) {
+			return permutationFunctionOrdered(10, digits);
+		}
+		
+		return(permutationFunctionOrdered(10, digits) * permutationFunctionOrdered(26, letters));
+	}
+	
+	/**
+	 * permutationFunction
+	 * Computes the number of possible permutations based on the mathematical permutation formula, when order is important, but repetition not allowed).
+	 * ( (n!)/(n-r)! )
+	 * @param n
+	 * @param r
+	 * @return total number of possible permutations as a double value
+	 * note: this function is not used in current solution but was researched for potential use.
+	 */
+	public double permutationFunction(double n, double r)
+	{
+		return ((factorialFunction(n)) / (factorialFunction(n - r)));
+	}
+	
+	/**
+	 * combinationFuction
+	 * Computers number of possible combinations based on mathematical combination formula, when order is not important and repetition is not allowed.
+	 * ((n!) / ((r!) * (n-r)!)
+	 * @param n
+	 * @param r
+	 * @return total number of possible combinations as a double value
+	 * note: this function is not used in current solution but was researched for potential use.
+	 */
+	public double combinationFunction(double n, double r)
+	{
+		
+		return ((factorialFunction(n)) / (factorialFunction(r) * factorialFunction(n - r)));
+	}
+	
+	/**
+	 * permutationFunctionOrdered
+	 * Computes number of possible permutations when order is important and repetition is allowed.
+	 * @param n
+	 * @param r
+	 * @return total numer of possible permutations as a double value
+	 */
+	public double permutationFunctionOrdered(double n, double r)
+	{
+		
+		return Math.pow(n, r);	
+	}
+	
+	/**
+	 * factorialFunction
+	 * Computes factorial for parameter n
+	 * @param n
+	 * @return n! (as a double value)
+	 */
+	public double factorialFunction(double n)
+	{
+		double temp;
+		
+		if(n <= 1)
+		{
+			return 1;
+		}
+		else
+		{
+			temp = n * factorialFunction(n-1);
+			return temp;
+		}
+		
+	}
+	
+}

@@ -1,0 +1,172 @@
+package com.migliaci.ign.license;
+import java.io.*;
+import java.util.ArrayList;
+
+/** Solution.java 
+* Computes solution value for a given population and manages program flow 
+*
+* @author Michael Migliacio
+* @version 0.9a 4/18/2012.
+*/
+
+public class Solution {
+
+	/**
+	 * main Manages program flow
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		boolean quitProgram = false; // boolean flag for determining when to
+									 // quit program
+		String choice = ""; // current user input value
+
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			while (quitProgram == false) {
+				System.out
+						.println("Enter a population and press Enter (or Q to quit): ");
+				// read user input value
+				choice = br.readLine();
+				if (choice.equalsIgnoreCase("Q")) {
+					System.out.println("Quitting program.");
+					quitProgram = true;
+					System.exit(0);
+
+				} else {
+
+					try {
+						// attempt to retrieve numeric value from user input
+						// if invalid value, process accordingly and notify user
+						// if decimal value, round accordingly
+						Double valueToCalculate = Double.valueOf(choice);
+
+						// negative value specified, throw an exception and
+						// notify user.
+						if (valueToCalculate.doubleValue() < 0) {
+							throw new NumberFormatException();
+						}
+
+						String result = calculateSolution(Math
+								.rint(valueToCalculate.doubleValue()));
+						System.out.println(result);
+						System.out.println("");
+					} catch (NumberFormatException nfe) {
+						System.out
+								.println("Invalid Or Blank Double Value Provided! "
+										+ choice);
+						System.out
+								.println("Please enter a valid numeric population value.");
+					}
+				}
+
+			}
+		} catch (IOException ie) {
+			System.out.println("I/O Exception Occurred: " + ie);
+			System.out.println("Exiting program.");
+			System.exit(1);
+		}
+
+	}
+
+	/*
+	 * Example Test Cases 
+	 * calculateSolution(-1); calculateSolution(0);
+	 * calculateSolution(1.1); calculateSolution(10); calculateSolution(15);
+	 * calculateSolution(26); calculateSolution(50); calculateSolution(100);
+	 * calculateSolution(676); calculateSolution(677); calculateSolution(999);
+	 * calculateSolution(1000); calculateSolution(10000);
+	 * calculateSolution(100000); calculateSolution(1000000);
+	 * calculateSolution(15003); calculateSolution(16732);
+	 * calculateSolution(256637); calculateSolution(275637);
+	 * calculateSolution(475637); calculateSolution(0); calculateSolution(1);
+	 * calculateSolution(2);
+	 */
+
+	/**
+	 * calculateSolution Computes potential solutions given a population value
+	 * and returns the "best" one.
+	 * 
+	 * @param population
+	 * @return a string displaying the current population, extra plates, and
+	 *         letters/numbers required.
+	 */
+
+	public static String calculateSolution(double population) {
+
+		Double calculatedPopulation = new Double(0); // current calculated population (used to compute extra plates)
+		double digits = 0; // digits in solution
+		double letters = 0; // letters in solution
+		ArrayList<Combination> combinationList = new ArrayList<Combination>(); // Array of potential solutions
+		CalculationHelper calcHelper = new CalculationHelper(); // calculation helper to assist with operations
+
+		// special base cases, don't compute more than we need to
+		if ((population == 0) || (population == 1)) {
+
+			digits = population;
+			Combination combo = new Combination(letters + " letters, " + digits
+					+ " numbers", population);
+			combo.setPopulation(population);
+			combo.setExtraPlates(10 - population);
+			return combo.getSolutionString();
+
+		}
+
+		// assumptions based on trial calculations: 10 digit maximum and 10
+		// letter maximum (total max of 20)
+		while (digits < 10) {
+			letters = 0;
+			while (letters < 10) {
+				calculatedPopulation = calcHelper.totalPlates(digits,
+						letters);
+				combinationList.add(new Combination(letters + " letters, "
+						+ digits + " numbers", calculatedPopulation));
+				letters++;
+			}
+			digits++;
+		}
+
+		// now check to see which number is the smallest.
+		// set smallest equal to first item, run calculation
+		// if it's smaller than the current "minimum", update the value of the
+		// smallest solution.
+		double calculatedExtraPlates = 0;
+		Combination currentSolution = null;
+
+		for (int i = 0; i < combinationList.size(); i++) {
+
+			if (currentSolution == null) {
+				currentSolution = (Combination) combinationList.get(i);
+				calculatedExtraPlates = currentSolution.getValue() - population;
+				// calculated extraPlates should be set here. Negative numbers
+				// are invalid.
+			} else {
+
+				double currentExtraPlates = 0;
+
+				currentExtraPlates = combinationList.get(i).getValue()
+						- population;
+
+				if (currentExtraPlates >= 0
+						&& currentExtraPlates < calculatedExtraPlates) {
+					calculatedExtraPlates = currentExtraPlates;
+					currentSolution = combinationList.get(i);
+				} else if (calculatedExtraPlates < 0) {
+					calculatedExtraPlates = currentExtraPlates;
+					currentSolution = combinationList.get(i);
+				}
+
+			}
+		}
+
+		currentSolution.setPopulation(population);
+		currentSolution.setExtraPlates(calculatedExtraPlates);
+		return currentSolution.getSolutionString();
+
+	}
+	
+
+}
