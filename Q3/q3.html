@@ -58,11 +58,11 @@
 	}
 </pre>
 <br>
-<p>  Due to exponential growth, specifying large populations produces extraordinarily large numbers of plates.  Due to this, some restrictions were specified (10 digits and 10 letters per license plate).  These restrictions can, however, be relaxed as necessary to support larger populations.  All potential solutions are calculated and stored in a list, and then the list is iterated to obtain the "best" solution (smallest number of extra plates) as per the problem description. </p>
+<p>  Due to exponential growth, specifying large populations produces extraordinarily large numbers of plates.  Due to this, some restrictions were specified.  These restrictions can, however, be relaxed as necessary to support larger populations.  All potential solutions are calculated and stored in a list, and then the list is iterated to obtain the "best" solution (smallest number of extra plates) as per the problem description. </p>
 <br>
 <pre class="prettyprint">
-// assumptions based on trial calculations: 10 digit maximum and 10
-		// letter maximum (total max of 20)
+// assumptions based on trial calculations: 
+// 0-9 digits, 0-9 letters
 		while (digits < 10) {
 			letters = 0;
 			while (letters < 10) {
